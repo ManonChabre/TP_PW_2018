@@ -14,7 +14,9 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class DetailsPage {
 
+  data : NavParams;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.data = navParams.get('film');
   }
 
   ionViewDidLoad() {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { DetailsPage } from '../details/details';
 export interface Results{
   title : string;
   author : string;
@@ -19,6 +20,7 @@ const result : Results[]= [
 export class HomePage {
 
     results : Results[];
+    pushPage : typeof DetailsPage= DetailsPage;
 
   constructor(public navCtrl: NavController) {
       this.results= [];
@@ -28,5 +30,4 @@ export class HomePage {
    const query : string = event.target.value;
    this.results=query?result:[];
   }
-
 }

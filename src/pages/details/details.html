@@ -14,5 +14,12 @@
 
 
 <ion-content padding>
-
+  <ion-list>
+    <ion-thumbnail item-start >
+      <img [src]="data.image" [width]="300" [height]="300">
+    </ion-thumbnail>
+    <h2>{{data.title}}</h2>
+    <p>Date : {{data.date}}</p>
+    <p>Auteur : {{data.author}}</p>
+  </ion-list>
 </ion-content>

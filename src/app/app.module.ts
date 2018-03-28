@@ -11,7 +11,8 @@ import { DetailsPage } from '../pages/details/details';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    DetailsPage
   ],
   imports: [
     BrowserModule,
@@ -20,7 +21,8 @@ import { DetailsPage } from '../pages/details/details';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    DetailsPage
   ],
   providers: [
     StatusBar,
