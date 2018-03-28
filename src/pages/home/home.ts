@@ -1,33 +1,41 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { DetailsPage } from '../details/details';
-export interface Results{
+import {Observable} from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { key } from '../../app/tmdb';
+
+export interface Result{
+  overview : string;
   title : string;
-  author : string;
-  date : string;
-  image : string;
+  popularity : number;
+  release_date : string;
+  poster_path : string;
 }
 
-const result : Results[]= [
-  {title : 'Coco', author: 'Moi', date : 'Aujourdhui ', image : 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/8AECsRLEDLoNvZ8JqrTFm0zBPqH.jpg'},
-  {title : 'Le labyrinthe', author: 'Moi ', date : 'Aujourdhui ', image : 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/7h9LUexxkTSX9YWSQ88b6PE1JdL.jpg'},
-  {title : 'Aléatoire', author: 'Moi ', date : 'Aujourdhui ', image : 'https://picsum.photos/200/300/?random'}
-];
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
 
-    results : Results[];
+    results : Observable<Result[]>;
     pushPage : typeof DetailsPage= DetailsPage;
 
-  constructor(public navCtrl: NavController) {
-      this.results= [];
+  constructor(public http: HttpClient) {
+      this.results= Observable.of([]);
   }
 
   onInput(event:any):void{
    const query : string = event.target.value;
-   this.results=query?result:[];
+   this.results=query? this.fetchResults(query) : Observable.of([]);
   }
+
+  fetchResults(recherche : string): Observable<Result[]>{
+     return this.http.get<Result[]>("https://api.themoviedb.org/3/search/movie", {
+       params : {api_key : key, query : recherche}
+     }).pluck("results");
+    
+    }
 }
+
+
