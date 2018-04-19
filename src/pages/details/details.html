@@ -16,11 +16,12 @@
 <ion-content padding>
   <ion-list>
     <ion-thumbnail item-start >
-      <img [src]="data.poster_path" [width]="300" [height]="300">
+      <img [src]=" 'https://image.tmdb.org/t/p/w500' +  data.poster_path" [width]="300" [height]="300">
     </ion-thumbnail>
     <h2>{{data.title}}</h2>
-    <p>Date : {{data.release_date}}</p>
-    <p>Resume : {{data.overview}}</p>
-    <p>Popularité : {{data.popularity}}</p>
+    <p>Date : {{data.release_date | date}}</p>
+    <p>Resume : </p>
+    <p>{{data.overview}}</p>
+    <p>Note : {{data.vote_average}} /10</p>
   </ion-list>
 </ion-content>

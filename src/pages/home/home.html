@@ -10,15 +10,17 @@
 </ion-header>
 
 <ion-content padding>
+  <button (click)="showRandomMovieAlert ([{title :'a'},{title : 'b'}])" >Click</button>
     <ion-list>
       <ion-item *ngIf="(results | async)?.length<1">Aucun Résultats</ion-item>
         <ion-item *ngFor="let current of (results | async)">
           <ion-thumbnail item-start >
-            <img [src]="current.poster_path">
+            <img [src]=" 'https://image.tmdb.org/t/p/w92' + current.poster_path">
           </ion-thumbnail>
           <h2>{{current.title | uppercase}}</h2>
-          <p>{{current.release_date}}</p>
+          <p>{{current.release_date | date}}</p>
           <button ion-button [navPush]="pushPage" [navParams]= '{ film : current}'>View</button>
       </ion-item>
     </ion-list>
+
 </ion-content>
