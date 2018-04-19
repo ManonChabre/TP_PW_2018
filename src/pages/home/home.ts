@@ -23,6 +23,7 @@ export interface Result{
 export class HomePage {
     shakeSubscription : Subscription;
     results : Observable<Result[]>;
+    results_rech : Observable<Result[]>;
     pushPage : typeof DetailsPage= DetailsPage;
    
   constructor(public http: HttpClient, public alert : AlertController,public navCtrl: NavController, public platform : Platform, public shake : Shake ) {
@@ -31,7 +32,7 @@ export class HomePage {
 
   onInput(event:any):void{
    const query : string = event.target.value;
-  // this.results=query? this.fetchResults(query) : Observable.of([]);
+   this.results_rech=query? this.fetchResults(query) : Observable.of([]);
    this.results=query? this.discoverMovies(): Observable.of([]);
   }
 
